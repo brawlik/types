@@ -1,0 +1,36 @@
+{
+  "name": "@brawlik/types",
+  "module": "index.ts",
+  "type": "module",
+  "author": "unitoshka",
+  "keywords": [
+    "brawlstars",
+    "brawl",
+    "brawl-api",
+    "types",
+    "code-generated",
+    "auto-published",
+    "cicd",
+    "api"
+  ],
+  "types": "./out/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./out/index.d.ts"
+    }
+  },
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "^1.2.15"
+  },
+  "peerDependencies": {
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@sinclair/typebox": "^0.34.33",
+    "yaml": "^2.8.0"
+  },
+  "scripts": {
+    "generate": "bun src/index.ts"
+  }
+}

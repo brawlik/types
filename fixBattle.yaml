@@ -1,0 +1,55 @@
+definitions:
+  BattleResult:
+    type: object
+    properties:
+      mode:
+        type: string
+      type:
+        type: string
+      result:
+        type: string
+      duration:
+        type: integer
+      trophyChange:
+        type: integer
+      starPlayer:
+        $ref: '#/definitions/StarPlayer'
+      teams:
+        $ref: '#/definitions/TeamList'
+  StarPlayer:
+    type: object
+    properties:
+      tag:
+        type: string
+      name:
+        type: string
+      brawler:
+        $ref: '#/definitions/PlayerBrawler'
+  PlayerBrawler:
+    type: object
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
+      power:
+        type: integer
+      trophies:
+        type: integer
+  TeamList:
+    type: array
+    items:
+      $ref: '#/definitions/Team'
+  Team:
+    type: array
+    items:
+      $ref: '#/definitions/TeamPlayer'
+  TeamPlayer:
+    type: object
+    properties:
+      tag:
+        type: string
+      name:
+        type: string
+      brawler:
+        $ref: '#/definitions/PlayerBrawler'
