@@ -2,6 +2,7 @@
   "name": "@brawlik/types",
   "module": "index.ts",
   "type": "module",
+  "version": "1.0.0",
   "author": "unitoshka",
   "keywords": [
     "brawlstars",
