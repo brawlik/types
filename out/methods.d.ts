@@ -4,52 +4,47 @@ import type { CallAPI } from './utils'
 
 export interface APIMethods {
     getBrawlers: CallAPI<
-        Params.asdParams,
+        Params.GetBrawlersParams,
         Objects.BrawlerList
     >
 
     getClubMembers: CallAPI<
-        Params.asdParams,
+        Params.GetClubMembersParams,
         Objects.ClubMemberList
     >
 
     getBattleLog: CallAPI<
-        Params.asdParams,
+        Params.GetBattleLogParams,
         Objects.BattleList
     >
 
     getPlayer: CallAPI<
-        Params.asdParams,
+        Params.GetPlayerParams,
         Objects.Player
     >
 
-    getScheduledEvents: CallAPI<
-        Params.asdParams,
-        Objects.ScheduledEvents
-    >
-
     getClub: CallAPI<
-        Params.asdParams,
+        Params.GetClubParams,
         Objects.Club
     >
 
     getClubRankings: CallAPI<
-        Params.asdParams,
+        Params.GetClubRankingsParams,
         Objects.ClubRankingList
     >
 
     getBrawlerRankings: CallAPI<
-        Params.asdParams,
+        Params.GetBrawlerRankingsParams,
         Objects.PlayerRankingList
     >
 
     getBrawler: CallAPI<
-        Params.asdParams,
+        Params.GetBrawlerParams,
         Objects.Brawler
     >
 
     getPlayerRankings: CallAPI<
-        Params.asdParams,
+        Params.GetPlayerRankingsParams,
         Objects.PlayerRankingList
     >
 }

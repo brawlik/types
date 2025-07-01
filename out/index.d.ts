@@ -187,8 +187,8 @@ export type EventModifierList = 'unknown' | 'none' | 'energyDrink' | 'angryRobo'
 
 export interface Player {
    club: PlayerClub
-   isQualifiedFromChampionshipChallenge: boolean
    '3vs3Victories': number
+   isQualifiedFromChampionshipChallenge: boolean
    icon: PlayerIcon
    tag: string
    name: string
@@ -207,8 +207,8 @@ export interface Player {
 export type BrawlerStatList = BrawlerStat[]
 
 export interface BrawlerStat {
-   starPowers: StarPowerList
    gadgets: AccessoryList
+   starPowers: StarPowerList
    id: number
    rank: number
    trophies: number
@@ -232,12 +232,12 @@ export interface PlayerClub {
 }
 
 export interface Match {
+   phase: string
    initiativeSide: number
    round: number
    teams: MatchTeamList
    terminationReason: string
    games: CompletedGameList
-   phase: string
    players: PlayerMatchStatusList
    state: string
    id: string
@@ -255,12 +255,12 @@ export interface PlayerMatchStatus {
 }
 
 export interface BrawlerInfo {
-   gears: GearInfoList
-   trophies: number
-   power: number
-   trophyChange: number
-   starPower: StarPower
    gadget: Accessory
+   starPower: StarPower
+   trophyChange: number
+   gears: GearInfoList
+   power: number
+   trophies: number
    name: JsonLocalizedName
    id: number
 }
@@ -301,15 +301,12 @@ export interface PlayerEntryCompletedGame {
 }
 
 export interface Stats {
-   objectivesStolen: number
-   brawlBallShotsOnGoal: number
-   brawlBallShotsSaved: number
    healingDone: number
+   deaths: number
    damageDealt: number
+   kills: number
    averageLatency: number
    damageReceived: number
-   kills: number
-   deaths: number
    totalDamageToSafe: number
    totalDamageToPets: number
    siegeDamageToRobot: number
@@ -328,6 +325,9 @@ export interface Stats {
    healingDoneToSelf: number
    healingDoneToTeamMates: number
    objectivesRecovered: number
+   objectivesStolen: number
+   brawlBallShotsOnGoal: number
+   brawlBallShotsSaved: number
 }
 
 export interface SiegeStats {
