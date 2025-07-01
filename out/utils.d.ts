@@ -1,0 +1,1 @@
+export type CallAPI<T, R> = (params: T) => Promise<R>

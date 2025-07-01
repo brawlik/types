@@ -1,4 +1,5 @@
 import { Type as t, type Static } from '@sinclair/typebox'
+import { MethodsModel } from './methods'
 
 const PropertyModel = t.Union([
     t.Object({ type: t.String(), enum: t.Optional(t.Array(t.String())) }),
@@ -15,12 +16,17 @@ const PropertiesModel = t.Intersect([
 
 const DefinitionModel = t.Record(t.String(), PropertiesModel)
 
-const SchemaModel = t.Object({
+const ObjectsModel = t.Object({
     definitions: DefinitionModel
 })
+
+const GeneralModel = t.Intersect([
+    ObjectsModel,
+    MethodsModel
+])
 
 type PropertiesType = Static<typeof PropertiesModel>
 
 type DefinitionType = Static<typeof DefinitionModel>
 
-export { type PropertiesType, type DefinitionType, PropertiesModel, SchemaModel }
+export { type PropertiesType, type DefinitionType, GeneralModel, PropertiesModel, ObjectsModel }

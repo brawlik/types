@@ -17,7 +17,7 @@ export function generateType(name: string, data: PropertiesType): string {
                     code += `${m}[]`
                 }
     
-                return `export type ${name} = ${code}`
+                return `export type ${name} = ${code}\n\n`
             }
     
             if ('type' in items) {
@@ -28,7 +28,7 @@ export function generateType(name: string, data: PropertiesType): string {
                         .map((i) => `'${i}'`)
                         .join(' | ')
     
-                    return `export type ${name} = ${unionTypes}`
+                    return `export type ${name} = ${unionTypes}\n\n`
                 }
             }
         }
@@ -64,21 +64,27 @@ export function generateType(name: string, data: PropertiesType): string {
         }
     }
 
-    return `export type ${name} = {\n` +
+    return `export interface ${name} {\n` +
            code +
-           '}'
+           '}\n\n'
 }
 
 export function fixBadRefs() {
     return 'export type List = unknown[]\n\n' +
-           'export type JsonLocalizedName = string'
+           'export type JsonLocalizedName = string\n\n'
 }
 
-export function generateCode(code: string[], definitions: DefinitionType) {
+export function generateCode(definitions: DefinitionType) {
+    let code = '' 
+
     for (const key in definitions) {
         const def = definitions[key]
-        if (!def) continue
+        if (!def || !('items' in def || 'properties' in def)) continue
 
-        code.push(generateType(key, def))
+        code += generateType(key, def)
     }
+
+    code = code.trimEnd()
+
+    return code
 }

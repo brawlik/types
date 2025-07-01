@@ -1,31 +1,25 @@
-import { parse } from 'yaml'
-
+import { generateMethodsCode } from './entities/methods'
 import { fixBadRefs, generateCode } from './entities/objects'
 
-import { SchemaModel } from './types'
+import { GeneralModel, ObjectsModel } from './types'
 
-import { Value } from '@sinclair/typebox/value'
-import type { Static, TSchema } from '@sinclair/typebox'
+import { loadYaml } from './utils'
 
-async function loadYaml<T extends TSchema>(path: string, schema: T): Promise<Static<T>> {
-    const text = await Bun.file(path).text()
-    const yaml = parse(text)
-
-    Value.Assert(schema, yaml)
-    
-    return yaml
-}
-
-const schema = await loadYaml('swagger.yaml', SchemaModel)
-const battleSchema = await loadYaml('fixBattle.yaml', SchemaModel)
+const schema = await loadYaml('swagger.yaml', GeneralModel)
+const battleSchema = await loadYaml('fixBattle.yaml', ObjectsModel)
 
 const definitions = schema.definitions
 const battleDefinitions = battleSchema.definitions
+const methods = schema.paths
 
-const code: string[] = []
+let code = ''
 
-code.push(fixBadRefs())
-generateCode(code, definitions)
-generateCode(code, battleDefinitions)
+code += fixBadRefs()
+code += generateCode(battleDefinitions)
+code += generateCode(definitions)
 
-await Bun.write(`./out/index.d.ts`, code.join('\n\n'))
+const { methodsCode, paramsCode } = generateMethodsCode(methods)
+
+await Bun.write(`./out/params.d.ts`, paramsCode)
+await Bun.write(`./out/methods.d.ts`, methodsCode)
+await Bun.write(`./out/index.d.ts`, code)
