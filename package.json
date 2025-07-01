@@ -2,10 +2,10 @@
   "name": "@brawlik/types",
   "module": "index.ts",
   "type": "module",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "author": "unitoshka",
   "keywords": [
-    "brawlstars",
+    "brawlstars", 
     "brawl",
     "brawl-api",
     "types",
@@ -15,14 +15,18 @@
     "api"
   ],
   "types": "./out/index.d.ts",
+  "typings": "./out/index.d.ts",
   "exports": {
     ".": {
       "types": "./out/index.d.ts"
-    }
+    },
+    "./*": {
+			"types": "./out/*.d.ts"
+		}
   },
   "devDependencies": {
-    "@types/bun": "^1.2.15",
-    "@sinclair/typebox": "^0.34.33",
+    "@types/bun": "^1.2.17",
+    "@sinclair/typebox": "^0.34.37",
     "yaml": "^2.8.0"
   },
   "peerDependencies": {
@@ -30,5 +34,8 @@
   },
   "scripts": {
     "generate": "bun src/index.ts"
-  }
+  },
+  "files": [
+		"out"
+	]
 }
