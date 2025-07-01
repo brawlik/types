@@ -388,10 +388,10 @@ definitions:
     properties:
       club:
         $ref: '#/definitions/PlayerClub'
-      isQualifiedFromChampionshipChallenge:
-        type: boolean
       3vs3Victories:
         type: integer
+      isQualifiedFromChampionshipChallenge:
+        type: boolean
       icon:
         $ref: '#/definitions/PlayerIcon'
       tag:
@@ -425,10 +425,10 @@ definitions:
   BrawlerStat:
     type: object
     properties:
-      starPowers:
-        $ref: '#/definitions/StarPowerList'
       gadgets:
         $ref: '#/definitions/AccessoryList'
+      starPowers:
+        $ref: '#/definitions/StarPowerList'
       id:
         type: integer
       rank:
@@ -466,6 +466,16 @@ definitions:
   Match:
     type: object
     properties:
+      phase:
+        type: string
+        enum:
+          - init
+          - banHeroes
+          - pickHeroes
+          - finalPreparation
+          - battle
+          - matchResult
+          - ending
       initiativeSide:
         type: integer
       round:
@@ -483,16 +493,6 @@ definitions:
           - other
       games:
         $ref: '#/definitions/CompletedGameList'
-      phase:
-        type: string
-        enum:
-          - init
-          - banHeroes
-          - pickHeroes
-          - finalPreparation
-          - battle
-          - matchResult
-          - ending
       players:
         $ref: '#/definitions/PlayerMatchStatusList'
       state:
@@ -525,18 +525,18 @@ definitions:
   BrawlerInfo:
     type: object
     properties:
-      gears:
-        $ref: '#/definitions/GearInfoList'
-      trophies:
-        type: integer
-      power:
-        type: integer
-      trophyChange:
-        type: integer
-      starPower:
-        $ref: '#/definitions/StarPower'
       gadget:
         $ref: '#/definitions/Accessory'
+      starPower:
+        $ref: '#/definitions/StarPower'
+      trophyChange:
+        type: integer
+      gears:
+        $ref: '#/definitions/GearInfoList'
+      power:
+        type: integer
+      trophies:
+        type: integer
       name:
         $ref: '#/definitions/JsonLocalizedName'
       id:
@@ -602,23 +602,17 @@ definitions:
   Stats:
     type: object
     properties:
-      objectivesStolen:
-        type: integer
-      brawlBallShotsOnGoal:
-        type: integer
-      brawlBallShotsSaved:
-        type: integer
       healingDone:
         type: integer
+      deaths:
+        type: integer
       damageDealt:
+        type: integer
+      kills:
         type: integer
       averageLatency:
         type: integer
       damageReceived:
-        type: integer
-      kills:
-        type: integer
-      deaths:
         type: integer
       totalDamageToSafe:
         type: integer
@@ -655,6 +649,12 @@ definitions:
       healingDoneToTeamMates:
         type: integer
       objectivesRecovered:
+        type: integer
+      objectivesStolen:
+        type: integer
+      brawlBallShotsOnGoal:
+        type: integer
+      brawlBallShotsSaved:
         type: integer
   SiegeStats:
     type: object
